@@ -10,7 +10,7 @@ import edu.eci.cvds.samples.entities.Cliente;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.ItemRentado;
 import edu.eci.cvds.samples.entities.TipoItem;
-import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
+import edu.eci.cvds.samples.services.ExcepcionServicioAlquiler;
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import java.sql.Date;
 import java.util.List;
@@ -27,26 +27,26 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    @Override
-   public Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler {
+   public Cliente consultarCliente(long docu) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler {
+   public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler {
+   public List<Cliente> consultarClientes() throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public Item consultarItem(int id) throws ExcepcionServiciosAlquiler {
+   public Item consultarItem(int id) throws ExcepcionServicioAlquiler {
        try {
            return itemDAO.load(id);
        } catch (PersistenceException ex) {
-           throw new ExcepcionServiciosAlquiler("Error al consultar el item "+id,ex);
+           throw new ExcepcionServicioAlquiler("Error al consultar el item "+id,ex);
        }
    }
 
@@ -56,46 +56,46 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    @Override
-   public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
+   public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler {
+   public TipoItem consultarTipoItem(int id) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler {
+   public List<TipoItem> consultarTiposItem() throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
+   public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
+   public void registrarCliente(Cliente c) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler {
+   public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
 
    @Override
-   public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
+   public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
    @Override
-   public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
+   public void registrarItem(Item i) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
    @Override
-   public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
+   public void vetarCliente(long docu, boolean estado) throws ExcepcionServicioAlquiler {
        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 }

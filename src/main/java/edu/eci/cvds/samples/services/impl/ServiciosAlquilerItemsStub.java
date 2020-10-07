@@ -4,7 +4,7 @@ import edu.eci.cvds.samples.entities.Cliente;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.ItemRentado;
 import edu.eci.cvds.samples.entities.TipoItem;
-import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
+import edu.eci.cvds.samples.services.ExcepcionServicioAlquiler;
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
 
 import java.io.Serializable;
@@ -44,7 +44,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
-   public Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler {
+   public Cliente consultarCliente(long docu) throws ExcepcionServicioAlquiler {
        Cliente c=null;
        if(clientes.containsKey(docu)){
            c=clientes.get(docu);
@@ -53,36 +53,36 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
-   public List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler {
+   public List<Cliente> consultarClientes() throws ExcepcionServicioAlquiler {
        return  new LinkedList<>(clientes.values());
    }
 
    @Override
-   public void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler {
+   public void registrarCliente(Cliente p) throws ExcepcionServicioAlquiler {
        if (!clientes.containsKey(p.getDocumento())) {
            clientes.put(p.getDocumento(), p);
        } else {
-           throw new ExcepcionServiciosAlquiler("El cliente con documento "+p+" ya esta registrado.");
+           throw new ExcepcionServicioAlquiler("El cliente con documento "+p+" ya esta registrado.");
        }
    }
 
    @Override
-   public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
+   public void vetarCliente(long docu, boolean estado) throws ExcepcionServicioAlquiler {
        if(clientes.containsKey(docu)){
            Cliente c=clientes.get(docu);
            c.setVetado(estado);            
        }
-       else{throw new ExcepcionServiciosAlquiler("Cliente no registrado:"+docu);}
+       else{throw new ExcepcionServicioAlquiler("Cliente no registrado:"+docu);}
    }
 
    @Override
-   public Item consultarItem(int id) throws ExcepcionServiciosAlquiler {
+   public Item consultarItem(int id) throws ExcepcionServicioAlquiler {
        Item i = null;
        if(itemsDisponibles.containsKey(id)){
            i=itemsDisponibles.get(id);
        }
        else{
-           throw new ExcepcionServiciosAlquiler("Item no registrado:"+id);
+           throw new ExcepcionServicioAlquiler("Item no registrado:"+id);
        }                
        return i;
    }
@@ -93,27 +93,27 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
-   public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
+   public void registrarItem(Item i) throws ExcepcionServicioAlquiler {
        if (!itemsDisponibles.containsKey(i.getId())) {
            itemsDisponibles.put(i.getId(), i);
        } else {
-           throw new ExcepcionServiciosAlquiler("El item " + i.getId() + " ya esta registrado.");
+           throw new ExcepcionServicioAlquiler("El item " + i.getId() + " ya esta registrado.");
        }
    }
 
    @Override
-   public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
+   public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServicioAlquiler {
        if (!itemsDisponibles.containsKey(id)) {
            Item c = itemsDisponibles.get(id);
            c.setTarifaxDia(tarifa);
            itemsDisponibles.put(id, c);
        } else {
-           throw new ExcepcionServiciosAlquiler("El item " + id + " no esta registrado.");
+           throw new ExcepcionServicioAlquiler("El item " + id + " no esta registrado.");
        }
    }
 
    @Override
-   public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler {
+   public TipoItem consultarTipoItem(int id) throws ExcepcionServicioAlquiler {
        TipoItem i = null;
        if(!tipositems.containsKey(id)){
            i=tipositems.get(id);
@@ -123,12 +123,12 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
-   public List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler {
+   public List<TipoItem> consultarTiposItem() throws ExcepcionServicioAlquiler {
        return  new LinkedList<>(tipositems.values());
    }
 
    @Override
-   public void registrarAlquilerCliente(Date date,long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
+   public void registrarAlquilerCliente(Date date,long docu, Item item, int numdias) throws ExcepcionServicioAlquiler {
 
        LocalDate ld=date.toLocalDate();
        LocalDate ld2=ld.plusDays(numdias);
@@ -142,41 +142,41 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
            itemsrentados.put(item.getId(), ir);
            mapaPrestamosPorIdCliente.put(item.getId(),docu);
        } else {
-           throw new ExcepcionServiciosAlquiler("No existe el cliente con el documento " + docu);
+           throw new ExcepcionServicioAlquiler("No existe el cliente con el documento " + docu);
        }
    }
 
    @Override
-   public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler{        
+   public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServicioAlquiler{        
        if (clientes.containsKey(idcliente)) {
            Cliente c = clientes.get(idcliente);
            return c.getRentados();            
        } else {
-           throw new ExcepcionServiciosAlquiler("Cliente no registrado:" + idcliente);
+           throw new ExcepcionServicioAlquiler("Cliente no registrado:" + idcliente);
        }
 
    }
 
-   private Cliente consultarClienteConItem(int iditem) throws ExcepcionServiciosAlquiler{
+   private Cliente consultarClienteConItem(int iditem) throws ExcepcionServicioAlquiler{
        if (mapaPrestamosPorIdCliente.containsKey(iditem)){  
            long idcli=mapaPrestamosPorIdCliente.get(iditem);
            if (clientes.containsKey(mapaPrestamosPorIdCliente.get(iditem))){
                return clientes.get(idcli);
            }
            else{
-               throw new ExcepcionServiciosAlquiler("El cliente "+idcli+" asociado al "
+               throw new ExcepcionServicioAlquiler("El cliente "+idcli+" asociado al "
                        + "alquiler del item "+iditem+" no esta registrado.");
            }                        
        }
        else{
-          throw new ExcepcionServiciosAlquiler("El item "+iditem+ " no esta alquilado.");
+          throw new ExcepcionServicioAlquiler("El item "+iditem+ " no esta alquilado.");
        }
    }
 
    @Override
-   public long consultarMultaAlquiler(int iditem,Date fechaDevolucion) throws ExcepcionServiciosAlquiler{
+   public long consultarMultaAlquiler(int iditem,Date fechaDevolucion) throws ExcepcionServicioAlquiler{
        if (!itemsrentados.containsKey(iditem)){
-           throw new ExcepcionServiciosAlquiler("El item "+iditem+"no esta en alquiler");
+           throw new ExcepcionServicioAlquiler("El item "+iditem+"no esta en alquiler");
        }
        else{
            ItemRentado ir=itemsrentados.get(iditem);
@@ -189,9 +189,9 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
-   public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler {
+   public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServicioAlquiler {
        if (!itemsDisponibles.containsKey(iditem)) {
-           throw new ExcepcionServiciosAlquiler("El item " + iditem + " no esta disponible.");
+           throw new ExcepcionServicioAlquiler("El item " + iditem + " no esta disponible.");
        } else {
            return itemsDisponibles.get(iditem).getTarifaxDia()*numdias;
        }

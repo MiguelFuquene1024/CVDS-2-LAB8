@@ -11,7 +11,7 @@ public interface ServiciosAlquiler {
 
    public abstract int valorMultaRetrasoxDia(int itemId);
 
-   public abstract Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler;
+   public abstract Cliente consultarCliente(long docu) throws ExcepcionServicioAlquiler;
 
    /**
    * @obj Consultar los items que tenga en su poder un cliente
@@ -20,11 +20,11 @@ public interface ServiciosAlquiler {
    * identificado con 'idcliente'
    * @throws ExcepcionServiciosAlquiler si el cliente no esta registrado
    */
-   public abstract List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler;
+   public abstract List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServicioAlquiler;
 
-   public abstract List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler;
+   public abstract List<Cliente> consultarClientes() throws ExcepcionServicioAlquiler;
 
-   public abstract Item consultarItem(int id) throws ExcepcionServiciosAlquiler;
+   public abstract Item consultarItem(int id) throws ExcepcionServicioAlquiler;
 
    /**
    * @obj consultar los items que estan disponibles para alquiler
@@ -42,11 +42,11 @@ public interface ServiciosAlquiler {
    * @throws ExcepcionServiciosAlquiler si el item no existe o no esta
    * actualmente alquilado
    */
-   public abstract long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler;
+   public abstract long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServicioAlquiler;
 
-   public abstract TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler;
+   public abstract TipoItem consultarTipoItem(int id) throws ExcepcionServicioAlquiler;
 
-   public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler;
+   public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServicioAlquiler;
 
    /**
    * @obj rejistrar el alkiler de un item
@@ -60,9 +60,9 @@ public interface ServiciosAlquiler {
    * @throws ExcepcionXX si el identificador no corresponde con un item, o si
    * el mismo ya esta alquilado
    */
-   public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
+   public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServicioAlquiler;
 
-   public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
+   public abstract void registrarCliente(Cliente p) throws ExcepcionServicioAlquiler;
 
    /**
    * @obj consultar el costo del alquiler de un item
@@ -75,10 +75,12 @@ public interface ServiciosAlquiler {
    */
    public abstract long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServicioAlquiler;
 
-   public abstract void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler;
+   public abstract void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServicioAlquiler;
 
-   public abstract void registrarItem(Item i) throws ExcepcionServiciosAlquiler;
+   public abstract void registrarItem(Item i) throws ExcepcionServicioAlquiler;
 
-   public abstract void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler;
+   public abstract void vetarCliente(long docu, boolean estado) throws ExcepcionServicioAlquiler;
+   
+}
 
 
