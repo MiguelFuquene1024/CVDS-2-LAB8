@@ -6,6 +6,7 @@ import edu.eci.cvds.samples.entities.Cliente;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.ItemRentado;
 
+
 public interface ClienteDAO {
 	
 	public void save(Cliente cl) throws PersistenceException;
@@ -14,7 +15,9 @@ public interface ClienteDAO {
 
 	public List<Cliente> consultarClientes() throws PersistenceException;
 
+
 	public List<ItemRentado> consultarItemsCliente(long idcliente) throws PersistenceException;
+
 
 	
 

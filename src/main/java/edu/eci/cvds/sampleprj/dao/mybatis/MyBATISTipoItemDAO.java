@@ -1,6 +1,8 @@
 package edu.eci.cvds.sampleprj.dao.mybatis;
 
+
 import java.util.List;
+
 
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
@@ -21,6 +23,7 @@ public class MyBATISTipoItemDAO implements TipoItemDAO{
     }
 
     @Override
+
     public TipoItem load(int id) throws PersistenceException {
     	try{
 		      return itemMapper.getTipoItem(id);
@@ -39,6 +42,8 @@ public class MyBATISTipoItemDAO implements TipoItemDAO{
 		      throw new PersistenceException("Error al consultar los Tipo items", null);
 		  }
 	}
+
+
         
 	
 }
