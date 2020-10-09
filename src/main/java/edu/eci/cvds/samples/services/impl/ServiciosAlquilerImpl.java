@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
+import edu.eci.cvds.sampleprj.dao.TipoItemDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.samples.entities.Cliente;
@@ -20,6 +21,14 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Inject
    private ItemDAO itemDAO;
+   
+   @Inject
+   private ClienteDAO clienteDAO;
+   
+   @Inject
+   private TipoItemDAO TipoItemDAO;
+   
+
 
    @Override
    public int valorMultaRetrasoxDia(int itemId) {
@@ -28,7 +37,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public Cliente consultarCliente(long docu) throws ExcepcionServicioAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+	   try {
+           return clienteDAO.load(docu);
+       } catch (PersistenceException ex) {
+           throw new ExcepcionServicioAlquiler("Error al consultar el Cliente "+docu,ex);
+       }
    }
 
    @Override
@@ -38,9 +51,14 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public List<Cliente> consultarClientes() throws ExcepcionServicioAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+	   try {
+		   return clienteDAO.consultarClientes();
+	   }catch (PersistenceException ex) {
+           throw new ExcepcionServicioAlquiler("Error al consultar el Clientes");
+       }
    }
-
+   
+   
    @Override
    public Item consultarItem(int id) throws ExcepcionServicioAlquiler {
        try {
@@ -49,6 +67,8 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
            throw new ExcepcionServicioAlquiler("Error al consultar el item "+id,ex);
        }
    }
+   
+
 
    @Override
    public List<Item> consultarItemsDisponibles() {
