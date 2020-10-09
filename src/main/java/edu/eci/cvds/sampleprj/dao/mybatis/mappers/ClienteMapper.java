@@ -35,9 +35,9 @@ public interface ClienteMapper {
     public List<Cliente> consultarClientes();
     
 
-    public void registrarCliente(@Param("cl") Cliente cl);
+    public void registrarCliente(@Param("cli") Cliente cl);
     
-    public List<ItemRentado> consultarItemsCliente(@Param("docliente")long idcliente);
+    
 
     	
 

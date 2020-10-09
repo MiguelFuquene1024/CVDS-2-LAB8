@@ -16,7 +16,7 @@ public class Main {
         //System.out.println(ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().consultarCliente(1004119));
     	//System.out.println(ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().consultarClientes());
     	//System.out.println(ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().consultarTiposItem());
-    	//ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().registrarCliente(new Cliente("Miguel",1004119,"8079373","saldskfñls","aksjhfkjsdhf"));
+    	//ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().registrarCliente(new Cliente("Miguel",-1010,"8079373","saldskls","aksjhfkjsf"));
     	//System.out.println(ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().consultarTipoItem(2));
     	//System.out.println(ServiciosAlquilerFactory.getInstance().getServiciosAlquiler().consultarItemsCliente(3));
     	

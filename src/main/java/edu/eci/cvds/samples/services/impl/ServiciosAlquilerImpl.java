@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
+import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.TipoItemDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
@@ -28,6 +29,9 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Inject
    private TipoItemDAO TipoItemDAO;
    
+   @Inject
+   private ItemRentadoDAO ItemRentadoDAO;
+   
 
 
    @Override
@@ -48,9 +52,9 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServicioAlquiler {
 
 	   try {
-		   return clienteDAO.consultarItemsCliente(idcliente);
+		   return ItemRentadoDAO.consultarItemsCliente(idcliente);
 	   }catch (PersistenceException ex) {
-           throw new ExcepcionServicioAlquiler("Error al consultar items del cliente");
+           throw new ExcepcionServicioAlquiler("Error al consultar items del cliente",ex);
        }
    }
 
@@ -109,7 +113,8 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    @Override
-   public void registrarCliente(Cliente c) throws ExcepcionServicioAlquiler {
+   public void registrarCliente(Cliente c) throws ExcepcionServicioAlquiler{
+	
 	   try {
 
 		   clienteDAO.save(c);
