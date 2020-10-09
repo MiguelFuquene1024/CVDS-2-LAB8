@@ -1,21 +1,62 @@
 package edu.eci.cvds.sampleprj.dao.mybatis;
 
-import edu.eci.cvds.sampleprj.dao.ItemDAO;
-import edu.eci.cvds.sampleprj.dao.PersistenceException;
-import edu.eci.cvds.samples.entities.Item;
+import java.util.List;
 
-public class MyBATISClienteDAO implements ItemDAO{
+import com.google.inject.Inject;
+
+import edu.eci.cvds.sampleprj.dao.ClienteDAO;
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.cvds.samples.entities.Cliente;
+import edu.eci.cvds.samples.entities.ItemRentado;
+
+public class MyBATISClienteDAO implements ClienteDAO{
+	
+	@Inject
+	private ClienteMapper clienteMapper;
 
 	@Override
-	public void save(Item it) throws PersistenceException {
-		// TODO Auto-generated method stub
+	public void save(Cliente cl) throws PersistenceException {
+		try{
+			clienteMapper.registrarCliente(cl);
+		}catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al registrar el cliente "+cl.toString(),e);
+		  }
 		
 	}
 
 	@Override
-	public Item load(int id) throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente load(long docu) throws PersistenceException {
+		try{
+		      return clienteMapper.consultarCliente(docu);
+		  }
+		  catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar el cliente "+docu,e);
+		  }
 	}
+
+	@Override
+	public List<Cliente> consultarClientes() throws PersistenceException {
+		try{
+		      return clienteMapper.consultarClientes();
+		  }
+		  catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar los clientes", null);
+		  }
+	}
+
+	@Override
+	public List<ItemRentado> consultarItemsCliente(long idcliente) throws PersistenceException {
+		try{
+		      return clienteMapper.consultarItemsCliente(idcliente);
+		  }
+		  catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar los clientes", null);
+		  }
+	}
+
+	
+
+	
 
 }

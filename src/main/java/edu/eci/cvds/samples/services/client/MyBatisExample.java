@@ -67,20 +67,20 @@ public class MyBatisExample {
     public static void main(String args[]) throws SQLException {
     	String fechainicial="2020-10-20";
     	String fechafinal="2020-12-25";
-    	
-    	Date d1 = Date.valueOf(fechainicial);
     	Date d2 = Date.valueOf(fechafinal);
+    	Date d1 = Date.valueOf(fechainicial);
+    	
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
 
         
         
-        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
         
-        ItemMapper cm2=sqlss.getMapper(ItemMapper.class);
+        //ItemMapper cm2=sqlss.getMapper(ItemMapper.class);
         
-        TipoItemMapper cm3=sqlss.getMapper(TipoItemMapper.class);
+        //TipoItemMapper cm3=sqlss.getMapper(TipoItemMapper.class);
         
         //System.out.println(cm.consultarClientes());
         //System.out.println(cm.consultarCliente(-9));
@@ -88,11 +88,11 @@ public class MyBatisExample {
        
         //cm.agregarItemRentadoACliente(-21521,3,d1,d2);
         
-        String fechaLanzamiento="2020-11-25";
-        Date d3 = Date.valueOf(fechaLanzamiento);
+        //String fechaLanzamiento="2020-11-25";
+        //Date d3 = Date.valueOf(fechaLanzamiento);
         
         
-        TipoItem ti=cm3.getTipoItem(5);
+        //TipoItem ti=cm3.getTipoItem(5);
         
         //Item item=new Item(ti,3,"miguel","estudiante de ciclos",d3,11,"hola","m");
         

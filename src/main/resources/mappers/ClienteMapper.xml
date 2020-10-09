@@ -107,6 +107,34 @@
 		INSERT INTO VI_ITEMRENTADO (id,CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta) VALUES (#{idcli},3,#{idit2},#{datei},#{datef})
 		
 	</insert>
+	
+	<select parameterType="map" id="consultarItemsCliente" resultMap="ClienteResult">
+		
+		SELECT
+    
+			id,
+			CLIENTES_documento,
+			ITEMS_id,
+			fechainiciorenta,
+			fechafinrenta
+		
+		FROM VI_ITEMRENTADO
+			
+		
+		WHERE CLIENTES_documento = #{docliente}
+		
+		
+		
+	</select>
+	
+	
+	
+	
+	<insert parameterType="map" id="registrarCliente" >
+		insert into VI_CLIENTES (documento, nombre, telefono, direccion, email, vetado) values
+        (#{cl.documento}, #{cl.nombre}, #{cl.telefono}, #{cl.direccion}, #{cl.email}, #{cl.vetado})
+		
+	</insert>
           	
 			
 	
