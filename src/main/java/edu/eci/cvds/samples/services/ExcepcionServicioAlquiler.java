@@ -8,7 +8,7 @@ public class ExcepcionServicioAlquiler extends Exception {
 		super(string);
 	}
 	public ExcepcionServicioAlquiler(String string, PersistenceException e) {
-        super(string);
+        super(string,e);
     }
 
 }

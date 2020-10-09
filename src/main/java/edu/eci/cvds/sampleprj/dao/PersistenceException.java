@@ -6,6 +6,6 @@ public class PersistenceException extends Exception{
 		super();
 	}
 	public PersistenceException(String string, org.apache.ibatis.exceptions.PersistenceException e) {
-        super(string);
+        super(string,e);
     }
 }

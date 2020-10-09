@@ -129,7 +129,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
    @Override
    public void registrarItem(Item i) throws ExcepcionServicioAlquiler {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+           itemDAO.save(i);
+       }catch (PersistenceException ex) {
+           throw new ExcepcionServicioAlquiler("Error al registrar item ",ex);
+       }
    }
 
    @Override
