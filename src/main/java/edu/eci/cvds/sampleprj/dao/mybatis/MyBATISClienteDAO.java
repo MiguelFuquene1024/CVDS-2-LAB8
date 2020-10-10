@@ -1,5 +1,6 @@
 package edu.eci.cvds.sampleprj.dao.mybatis;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -9,7 +10,7 @@ import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.samples.entities.Cliente;
 
-import edu.eci.cvds.samples.entities.ItemRentado;
+
 
 
 public class MyBATISClienteDAO implements ClienteDAO{
@@ -50,16 +51,20 @@ public class MyBATISClienteDAO implements ClienteDAO{
 	}
 
 	@Override
-	public List<ItemRentado> consultarItemsCliente(long idcliente) throws PersistenceException {
+	public void registrarItemRentadoACliente(int id, int idit, Date fechainicio, Date fechafin)throws PersistenceException{
 		try{
-		      return clienteMapper.consultarItemsCliente(idcliente);
-		  }
-		  catch(org.apache.ibatis.exceptions.PersistenceException e){
-		      throw new PersistenceException("Error al consultar los clientes", null);
-		  }
+	      clienteMapper.agregarItemRentadoACliente(id, idit, fechainicio, fechafin);
+	  }
+	  catch(org.apache.ibatis.exceptions.PersistenceException e){
+	      throw new PersistenceException("Error al consultar los clientes", null);
+	  }
+}
+		
 	}
 
 	
+
+	
 	
 
-}
+

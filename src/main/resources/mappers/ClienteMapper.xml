@@ -13,16 +13,10 @@
 		<result property="email" column="email"></result>
 		<result property="direccion" column="direccion"></result>		
 		<result property="vetado" column="vetado"></result>
-		<collection  property='rentados' ofType='ItemRentado' resultMap='ItemRentadoResult'></collection>
+		<collection  property='rentados' ofType='ItemRentado' resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult'></collection>
 	</resultMap>
 	
-	<resultMap type='ItemRentado' id='ItemRentadoResult'>
-		<id property='id' column='id'/>
-		<result property='fechainiciorenta' column='fechainiciorenta'/>
-		<result property='fechafinrenta' column='fechafinrenta'/>  
-		<association property='item' javaType='Item' resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult'></association>
-		
-	</resultMap>
+	
 	
 	
 	
@@ -131,8 +125,7 @@
 	
 	
 	<insert parameterType="map" id="registrarCliente" >
-		insert into VI_CLIENTES (documento, nombre, telefono, direccion, email, vetado) values
-        (#{cl.documento}, #{cl.nombre}, #{cl.telefono}, #{cl.direccion}, #{cl.email}, #{cl.vetado})
+		insert into VI_CLIENTES (documento, nombre, telefono, direccion, email, vetado) values(#{cli.documento}, #{cli.nombre}, #{cli.telefono}, #{cli.direccion}, #{cli.email}, #{cli.vetado})
 		
 	</insert>
           	
