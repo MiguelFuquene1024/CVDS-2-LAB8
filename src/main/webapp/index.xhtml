@@ -14,12 +14,66 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <center>
-        <p:outputLabel value="Tienda Items"/>
-        <h:form id="form1">
-            <h:panelGrid columns="1">
-                <p:commandButton class="Button" value="Registrar Cliente" actionListener="#{Cliente.start()}" action="#{navigationController.paginaCliente()}"/>
+            <p:dataTable value="#{Cliente.clientes}" var="cl">
+                <p:column headerText="Documento">
+                    <p:outputLabel value="#{cl.documento}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:outputLabel value="#{cl.nombre}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <p:outputLabel value="#{cl.telefono}"/>
+                </p:column>
+                <p:column headerText="Dirección">
+                    <p:outputLabel value="#{cl.direccion}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <p:outputLabel value="#{cl.email}"/>
+                </p:column>
+                <p:column>
+                    <h:commandLink value="Desplegar" actionListener="#{Cliente.setDesplegado(cl)}" action="#{navigationController.paginaAlquiler()}"/>
+                </p:column>
+            </p:dataTable>
+        <p:outputLabel value="Registro Clientes"/>
+        <h:form id="formCliente">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Documento"/>
+                <p:inputText id="Documento" type="long" binding="#{doc}" />
+                <h:outputLabel value="Nombre"/>
+                <p:inputText id="Nombre" type="String" binding="#{name}"/>
+                <h:outputLabel value="Telefono"/>
+                <p:inputText id="Telefono" type="String" binding="#{tele}"/>
+                <h:outputLabel value="Direccion"/>
+                <p:inputText id="Direccion" type="String" binding="#{dir}"/>
+                <h:outputLabel value="Email"/>
+                <p:inputText id="Email" type="String" binding="#{mail}"/>
+                <p:commandButton update="formCliente" class="Button" value="Registrar Cliente" actionListener="#{Cliente.registrarCliente(name.value, doc.value, tele.value, dir.value, mail.value)}"/>
             </h:panelGrid>
+            <p:dataTable value="#{Cliente.clientes}" var="cl">
+                <p:column headerText="Documento">
+                    <p:outputLabel value="#{cl.documento}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:outputLabel value="#{cl.nombre}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <p:outputLabel value="#{cl.telefono}"/>
+                </p:column>
+                <p:column headerText="Dirección">
+                    <p:outputLabel value="#{cl.direccion}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <p:outputLabel value="#{cl.email}"/>
+                </p:column>
+                <p:column>
+                    <h:commandLink value="Desplegar" actionListener="#{Cliente.setDesplegado(cl)}" action="#{navigationController.paginaAlquiler()}"/>
+                </p:column>
+            </p:dataTable>
+            
         </h:form>
+  
+        <p:outputLabel value="Tienda Items"/>
+        
         </center>
     </h:body>
 </html>
