@@ -51,7 +51,7 @@ public class ClienteBean extends BasePageBean{
             new ExcepcionServicioAlquiler("No se pudo registrar cliente");
         }       
     }
-    public void setDesplegado(Cliente desplegado) {
+    public void setDesplegado(Cliente desplegado) throws ExcepcionServicioAlquiler {
         this.desplegado = desplegado;
         disponibles = serviciosAlquiler.consultarItemsDisponibles();
         consultarItemsRentados();

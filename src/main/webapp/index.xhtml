@@ -17,7 +17,7 @@ and open the template in the editor.
         <p:outputLabel value="Tienda Items"/>
         <h:form id="form1">
             <h:panelGrid columns="1">
-                <p:commandButton class="Button" value="Registrar Cliente" actionListener=
+                <p:commandButton class="Button" value="Registrar Cliente" actionListener="#{Cliente.start()}" action="#{navigationController.paginaCliente()}"/>
             </h:panelGrid>
         </h:form>
         </center>

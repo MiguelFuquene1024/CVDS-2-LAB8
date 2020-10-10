@@ -239,4 +239,9 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
        clientes.put(c3.getDocumento(), c3);
 
   }
+
+    @Override
+    public void registrarItemRentadoACliente(int id, int idit, Date fechainicio, Date fechafin) throws ExcepcionServicioAlquiler {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
