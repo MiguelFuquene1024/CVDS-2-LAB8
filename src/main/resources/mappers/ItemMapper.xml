@@ -59,6 +59,22 @@
 		FROM VI_ITEMS as i
 		left join VI_TIPOITEM as ti on i.TIPOITEM_id = ti.id where i.id = #{itid}
     </select>
-		
+    <select parameterType="map" id="itemsdisponibles" resultMap="ItemResult">
+    SELECT
+            r.id,
+            r.nombre,
+            r.descripcion,
+            r.fechalanzamiento,
+            r.tarifaxdia,
+            r.formatorenta,
+            r.genero,
+            ti.id as ti_id,
+            ti.descripcion as ti_descripcion
+
+           FROM VI_ITEMS AS r
+           LEFT JOIN VI_TIPOITEM AS ti ON r.TIPOITEM_id=ti.id
+            LEFT JOIN VI_ITEMRENTADO AS b ON r.id=b.ITEMS_id
+            WHERE b.ITEMS_id IS null
+	</select>
     
 </mapper>

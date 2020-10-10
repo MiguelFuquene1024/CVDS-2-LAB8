@@ -35,6 +35,23 @@
 		
 	</select>
 	
+	<insert parameterType="map" id="registrarCliente" >
+		insert into VI_CLIENTES (documento, nombre, telefono, direccion, email, vetado) values(#{cli.documento}, #{cli.nombre}, #{cli.telefono}, #{cli.direccion}, #{cli.email}, #{cli.vetado})
+		
+	</insert>
+	
+	
+	<select parameterType="map" id="multaAlquiler" resultMap="ItemRentadoResult">
+		
+		select SUM(DATEDIFF( #{fecha} ,ir.fechainiciorenta)*i.tarifaxdia) AS multa
+		FROM VI_ITEMRENTADO as ir 
+		left join VI_ITEMS  AS i on ir.ITEMS_id =i.id 
+		where i.id = #{mul}
+		
+		
+		
+	</select>
+	
 	
 	
 	

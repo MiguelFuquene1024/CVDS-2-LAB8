@@ -30,7 +30,7 @@ public interface ServiciosAlquiler {
    * @obj consultar los items que estan disponibles para alquiler
    * @return el listado de items disponibles
    */
-   public abstract List<Item> consultarItemsDisponibles();
+   public abstract List<Item> consultarItemsDisponibles() throws ExcepcionServicioAlquiler;
 
    /**
    * @obj consultar el valor de la multa del alquiler, dado el id del item
@@ -80,6 +80,8 @@ public interface ServiciosAlquiler {
    public abstract void registrarItem(Item i) throws ExcepcionServicioAlquiler;
 
    public abstract void vetarCliente(long docu, boolean estado) throws ExcepcionServicioAlquiler;
+
+   void registrarItemRentadoACliente(int id, int idit, Date fechainicio, Date fechafin) throws ExcepcionServicioAlquiler;
    
 }
 
